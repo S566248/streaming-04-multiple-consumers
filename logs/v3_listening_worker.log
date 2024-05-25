@@ -1,0 +1,20 @@
+2024-05-24 23:25:30,494.v3_listening_worker.INFO ==================================================
+2024-05-24 23:25:30,495.v3_listening_worker.INFO Today is 2024-05-24 at 11:25 PM
+2024-05-24 23:25:30,496.v3_listening_worker.INFO Running on: nt Windows 10
+2024-05-24 23:25:30,496.v3_listening_worker.INFO Python version:  3.11.9
+2024-05-24 23:25:30,497.v3_listening_worker.INFO Python path: C:\Users\Mikayla Rietgraf\NWMS Masters\Streaming Data\Module4\streaming-04-multiple-consumers\.venv
+2024-05-24 23:25:30,497.v3_listening_worker.INFO Working dir: C:\Users\Mikayla Rietgraf\NWMS Masters\Streaming Data\Module4\streaming-04-multiple-consumers
+2024-05-24 23:25:30,498.v3_listening_worker.INFO ==================================================
+2024-05-24 23:25:30,526.v3_listening_worker.INFO  [*] Ready for work. To exit press CTRL+C
+2024-05-24 23:25:52,225.v3_listening_worker.INFO  [x] Received First task.... at 2024-05-24 23:25:52.225899
+2024-05-24 23:25:56,227.v3_listening_worker.INFO  [x] Done.
+2024-05-24 23:25:56,236.v3_listening_worker.INFO  [x] Received Second task.... at 2024-05-24 23:25:56.236725
+2024-05-24 23:26:00,240.v3_listening_worker.INFO  [x] Done.
+2024-05-24 23:26:00,242.v3_listening_worker.INFO  [x] Received Third task.... at 2024-05-24 23:26:00.242157
+2024-05-24 23:26:04,246.v3_listening_worker.INFO  [x] Done.
+2024-05-24 23:26:04,251.v3_listening_worker.INFO  [x] Received Forth task... at 2024-05-24 23:26:04.251553
+2024-05-24 23:26:07,253.v3_listening_worker.INFO  [x] Done.
+2024-05-24 23:26:07,254.v3_listening_worker.INFO  [x] Received Fifth task... at 2024-05-24 23:26:07.254044
+2024-05-24 23:26:10,255.v3_listening_worker.INFO  [x] Done.
+2024-05-24 23:26:10,257.v3_listening_worker.INFO  [x] Received Sixth task... at 2024-05-24 23:26:10.257117
+2024-05-24 23:26:13,258.v3_listening_worker.INFO  [x] Done.

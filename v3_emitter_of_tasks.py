@@ -2,14 +2,22 @@
     This program sends a message to a queue on the RabbitMQ server.
     Make tasks harder/longer-running by adding dots at the end of the message.
 
-    Author: Denise Case
-    Date: January 15, 2023
+    Author: Tyler Stanton
+    Date: May 24, 2024
 
 """
 
+# Add imports
 import pika
 import sys
 import webbrowser
+import csv
+
+# Set up logger
+from util_logger import setup_logger
+
+logger, logname = setup_logger(__file__)
+
 
 def offer_rabbitmq_admin_site():
     """Offer to open the RabbitMQ Admin website"""
@@ -17,7 +25,8 @@ def offer_rabbitmq_admin_site():
     print()
     if ans.lower() == "y":
         webbrowser.open_new("http://localhost:15672/#/queues")
-        print()
+        logger.info("Opened RabbitMQ")
+        
 
 def send_message(host: str, queue_name: str, message: str):
     """
@@ -44,25 +53,30 @@ def send_message(host: str, queue_name: str, message: str):
         # every message passes through an exchange
         ch.basic_publish(exchange="", routing_key=queue_name, body=message)
         # print a message to the console for the user
-        print(f" [x] Sent {message}")
+        logger.info(f" [x] Sent {message}")
     except pika.exceptions.AMQPConnectionError as e:
-        print(f"Error: Connection to RabbitMQ server failed: {e}")
+        logger.error(f"Error: Connection to RabbitMQ server failed: {e}")
         sys.exit(1)
     finally:
         # close the connection to the server
         conn.close()
 
-# Standard Python idiom to indicate main program entry point
-# This allows us to import this module and use its functions
-# without executing the code below.
-# If this is the program being run, then execute the code below
-if __name__ == "__main__":  
-    # ask the user if they'd like to open the RabbitMQ Admin site
+# Emit tasks from tasks.csv to RabbitMQ server
+def emit_tasks(file_path: str, host: str, queue_name: str):
+    with open(file_path, newline='') as csv_file:
+        reader = csv.reader(csv_file)
+        for row in reader: 
+            message = " ".join(row)
+            send_message(host, queue_name, message)
+
+
+
+if __name__ == "__main__":
+    # Offers to open RabbitMQ admin page
     offer_rabbitmq_admin_site()
-    # get the message from the command line
-    # if no arguments are provided, use the default message
-    # use the join method to convert the list of arguments into a string
-    # join by the space character inside the quotes
-    message = " ".join(sys.argv[1:]) or "Second task.................."
-    # send the message to the queue
-    send_message("localhost","task_queue2",message)
+    # Define file_name variables file_name, host, and queue_name 
+    file_name = 'tasks.csv'
+    host = "localhost"
+    queue_name = "task_queue3"
+    # Send the tasks to the queue
+    emit_tasks(file_name, host, queue_name)
